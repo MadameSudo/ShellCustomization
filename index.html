@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Linux Basics: Shell Scripting & Customizing the Shell</title>
+  <style>
+    body {
+      font-family: "Times New Roman", Times, serif;
+    }
+    h1 {
+      text-align: center;
+      animation: flash 1s infinite;
+    }
+    h2 {
+      color: #f06292;
+    }
+    .content {
+      text-align: justify;
+      font-size: 1.1em;
+      margin: 0 auto;
+      width: 80%;
+      padding-top: 20px;
+    }
+    code {
+      font-family: "Courier New", Courier, monospace;
+      background-color: #f0f0f0;
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
+    footer {
+      text-align: center;
+      font-size: 0.9em;
+      margin-top: 40px;
+      padding-bottom: 10px;
+    }
+    @keyframes flash {
+      0% {
+        color: #f0a7b6;
+      }
+      50% {
+        color: #c9c9c9;
+      }
+      100% {
+        color: #f0a7b6;
+      }
+    }
+  </style>
+  <script>
+    function runScript() {
+      // Executing shell commands dynamically and displaying the output
+      let currentDate = new Date().toLocaleDateString();
+      let currentDirectory = "Current Directory: " + window.location.href; // This gets the current URL as an example
+      let scriptOutput = "Boom. this is a shell script!\n";
+      scriptOutput += "Today is: " + currentDate + "\n";
+      scriptOutput += currentDirectory;
+      alert(scriptOutput);
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <h1>Linux Basics: Shell Scripting & Customizing the Shell</h1>
+  </header>
+
+  <main class="content">
+    <section>
+      <h2>Shell Scripting!</h2>
+      <p>
+        Shell scripting in Linux allows you to automate tasks on your computer, it makes it do things without you needing to click or use a mouse. Think of it like creating a recipe for your computer, it follows step-by-step instructions. For example, it can organize files or perform specific tasks regularly.
+      </p>
+      <p>
+        In shell scripting, you write these instructions using simple commands and special symbols. It's a bit like learning a language for your computer. You'll discover variables (like containers for information), loops (for repeating tasks), and conditions (for making decisions). Once you're familiar, you'll be able to make your computer do amazing things, like handling many files or doing tasks automatically.
+        <button onclick="runScript()">Click This!</button>
+      </p>
+    </section>
+
+    <section>
+      <h2>Customizing the Shell</h2>
+      <p>
+        The shell in Linux is like the control center of your computer, where you tell it what to do. Customizing it is like personalizing your workspace or making it work exactly the way you prefer!
+      </p>
+      <p>
+        When you customize your shell, you can change its appearance, create shortcuts for long commands, or even make it understand you better. For instance, you can display helpful information when you start, like where you are in your computer, or create short words for longer commands.
+      </p>
+      <p>
+        It's very much like making your computer more comfortable and fun to use. You can also add extra tools that make it smarter and more personalized.
+      </p>
+      <p>
+        By customizing the shell, you make your computer a friendly assistant that knows exactly what you need and how you like things done.
+      </p>
+    </section>
+
+    <section>
+ <h1>Mastering The Art of Shell Customization in Linux</h1>
+
+<h2>Step 1: Choose Your Shell</h2>
+<p>First, select a shell to customize. Linux offers various shells like Bash, Zsh, Fish, etc. For instance, to check the default shell, type:</p>
+<pre><code>echo $SHELL</code></pre>
+<p>To switch your shell, use the <code>chsh</code> command followed by the path to the shell.</p>
+
+<h2>Step 2: Configuration Files</h2>
+<p>Each shell has configuration files that control its behavior. For Bash, the primary file is <code>.bashrc</code>; for Zsh, it's <code>.zshrc</code>. Edit these files to customize your shell's environment:</p>
+<pre><code>vim ~/.bashrc</code></pre>
+<p>Add aliases, environment variables, or custom functions within these files to modify your shell's behavior.</p>
+
+<h2>Step 3: Aliases and Functions</h2>
+<p>Aliases are shortcuts for commands; functions are custom command sequences. For example:</p>
+<pre><code>alias ll='ls -l'</code></pre>
+<pre><code>greet() {
+    echo "Hello, $1!"
+}
+</code></pre>
+<p>After defining them, use <code>source ~/.bashrc</code> (or respective shell file) to apply changes without restarting the shell.</p>
+
+<h2>Step 4: Prompt Customization</h2>
+<p>Modify your shell prompt to display useful information. For Bash or Zsh, edit <code>PS1</code> in the configuration file. Example:</p>
+<pre><code>PS1='\[\e[1;32m\]\u@\h \[\e[1;34m\]\w \$ \[\e[0m\]'</code></pre>
+<p>This PS1 setting will display username, hostname, working directory, and a dollar sign for the prompt.</p>
+
+<h2>Step 5: Plug-ins and Themes</h2>
+<p>You could enhance your shell with plug-ins and themes. For Zsh, tools like Oh My Zsh provide a plethora of themes and plugins:</p>
+<pre><code>sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"</code></pre>
+<p>You could also explore and activate various themes and plugins by editing the <code>.zshrc</code> file.</p>
+    </section>
+    <section>
+<h2>Potential Issues and How to Solve Them</h2>
+
+<h3>1. Syntax Errors in Configuration Files</h3>
+<p>If you encounter errors after modifying configuration files like <code>.bashrc</code> or <code>.zshrc</code>, it might be due to syntax issues. Use the shell's built-in debugging features:</p>
+<pre><code>bash -n ~/.bashrc</code></pre>
+<pre><code>source ~/.bashrc</code></pre>
+<p>For Zsh:</p>
+<pre><code>zsh -n ~/.zshrc</code></pre>
+<pre><code>source ~/.zshrc</code></pre>
+<p>This helps identify syntax errors before applying changes.</p>
+
+<h3>2. Missing or Conflicting Dependencies</h3>
+<p>When using plug-ins or themes, missing dependencies or conflicting versions might cause issues. Check the documentation of the plug-in/theme for required dependencies and ensure they are installed correctly.</p>
+
+<h3>3. Prompt Not Updating</h3>
+<p>If changes to your prompt aren't reflecting, ensure you've sourced the configuration file after modifications:</p>
+<pre><code>source ~/.bashrc</code></pre>
+<pre><code>source ~/.zshrc</code></pre>
+<p>Also, ensure there are no conflicting settings overriding your prompt configuration further down in the file.</p>
+
+<h3>4. Incorrect Shell Path</h3>
+<p>If you've changed your default shell and encounter login issues, it might be due to an incorrect shell path in <code>/etc/passwd</code>. Use the <code>chsh</code> command to update it:</p>
+<pre><code>chsh -s /bin/bash username</code></pre>
+<p>Replace <code>/bin/bash</code> with your desired shell and <code>username</code> with your Linux username.</p>
+
+<h3>5. Plug-in/Theme Compatibility</h3>
+<p>Some plug-ins or themes might not be compatible with certain shell versions. Verify compatibility by checking the documentation or community forums related to the plug-in/theme.</p>
+<p>If these issues persist and the solutions don't work, please consider rolling back changes or seeking help from the respective plug-in/theme support channels, or email me at madamesudo@proton.me !</p>
+  </section>
+  </main>
+
+  <footer>
+    <p>© 2023 Madame Sudo. All rights reserved.</p>
+  </footer>
+</body>
+</html>
+
+
+
+
